@@ -53,18 +53,54 @@ def get_all_users():
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
         db_cursor.execute("""
-            SELECT * FROM Users
+            SELECT 
+                first_name, last_name, email, username
+            FROM Users
             ORDER BY LOWER(username)
                           """)
 
         users = []
         rowset = db_cursor.fetchall()
         for row in rowset:
-            user = User(row['id'], row['first_name'], row['last_name'], row['email'], row['bio'],
-                        row['username'], row['password'], row['profile_image_url'], row['created_on'], row['active'])
-            users.append(user.serialized())
+            user = User(first_name=row['first_name'],
+                        last_name=row['last_name'],
+                        email=row['email'],
+                        username=row['username'])
+            users.append(user.all_users())
 
     return users
+
+
+def get_single_user(id):
+    """Gets a single user from the database
+
+    Args:
+        id (int): the user id for the user being referenced, should be unique per user
+    """
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        SELECT 
+            u.first_name,
+            u.last_name,
+            u.profile_image_url,
+            u.username,
+            u.created_on,
+            u.bio
+        FROM Users u 
+        WHERE u.id = ?
+        """, (id, ))
+
+    row = db_cursor.fetchone()
+
+    user = User(
+        first_name=row['first_name'], last_name=row['last_name'], profile_image_url=row[
+            'profile_image_url'], username=row['username'], created_on=row['created_on'], bio=row['bio']
+    )
+
+    return user.single_user()
 
 
 def create_user(user):

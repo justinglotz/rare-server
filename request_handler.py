@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
-from views.user_requests import create_user, login_user, get_all_users
+from views.user_requests import create_user, login_user, get_all_users, get_single_user
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -62,7 +62,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             if resource == "users":
                 if id is not None:
-                    pass
+                    response = get_single_user(id)
 
                 else:
                     response = get_all_users()
