@@ -1,6 +1,6 @@
 class User():
 
-    def __init__(self, id, first_name, last_name, email, bio, username, password, profile_image_url, created_on, active):
+    def __init__(self, id=None, first_name=None, last_name=None, email=None, bio=None, username=None, password=None, profile_image_url=None, created_on=None, active=None):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -12,10 +12,20 @@ class User():
         self.created_on = created_on
         self.active = active
 
-    def serialized(self):
+    def all_users(self):
         return {
             "first_name": self.first_name,
             "last_name": self.last_name,
+            "email": self.email,
+            "username": self.username
+        }
+
+    def single_user(self):
+        return {
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "profile_image_url": self.profile_image_url,
             "username": self.username,
-            "email": self.email
+            "created_on": self.created_on,
+            "bio": self.bio
         }
