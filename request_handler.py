@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
-from views.user_requests import create_user, login_user, get_all_users, get_single_user
+from views.user_requests import create_user, login_user, get_all_users, get_single_user, delete_user
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -91,7 +91,13 @@ class HandleRequests(BaseHTTPRequestHandler):
 
     def do_DELETE(self):
         """Handle DELETE Requests"""
-        pass
+        self._set_headers(204)
+
+        (resource, id) = self.parse_url()
+
+        if resource == "users":
+            delete_user(id)
+        self.wfile.write("".encode())
 
 
 def main():

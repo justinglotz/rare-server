@@ -13,6 +13,11 @@ class User():
         self.active = active
 
     def all_users(self):
+        """Selects all users for the frontend to view a list of users
+
+        Returns:
+            dictionary: attributes needed for view all users in front end
+        """
         return {
             "first_name": self.first_name,
             "last_name": self.last_name,
@@ -21,6 +26,11 @@ class User():
         }
 
     def single_user(self):
+        """Selects a single user for the frontend to use in the user details page
+
+        Returns:
+            dictionary: attributes needed for viewing the details of a single user in the frontend
+        """
         return {
             "first_name": self.first_name,
             "last_name": self.last_name,
