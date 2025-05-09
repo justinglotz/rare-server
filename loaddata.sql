@@ -91,3 +91,11 @@ INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.c
 
 
 INSERT INTO Users ('id', 'first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active') VALUES (2, 'Justin', 'Glotzbach', 'justin@justin.com', 'Here is a bio', 'justinglotz', 'password', 'image_url', dat, False)
+
+
+INSERT INTO Comments VALUES (null, '1', '1', 'I know I just commented, but this is super siick')
+INSERT INTO Comments VALUES (null, '2', '2', 'This Just in, who are you?')
+
+SELECT *
+FROM Comments
+WHERE post_id = 2

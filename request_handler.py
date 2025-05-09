@@ -3,6 +3,8 @@ import json
 
 from views.user_requests import create_user, login_user, get_all_users, get_single_user, delete_user, update_user
 
+from views import get_comments_by_post
+
 
 class HandleRequests(BaseHTTPRequestHandler):
     """Handles the requests to this server"""
@@ -66,6 +68,12 @@ class HandleRequests(BaseHTTPRequestHandler):
 
                 else:
                     response = get_all_users()
+
+        else:
+            (resource, key, value) = parsed
+
+            if key == 'post_id' and resource == "comments":
+                response = get_comments_by_post(value)
         self.wfile.write(json.dumps(response).encode())
 
     def do_POST(self):
