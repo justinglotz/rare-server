@@ -39,7 +39,7 @@ CREATE TABLE "Posts" (
   "image_url" varchar,
   "content" varchar,
   "approved" bit,
-  FOREIGN KEY(`user_id`) REFERENCES `Users`(`id`)
+  -- FOREIGN KEY(`user_id`) REFERENCES `Users`(`id`)
 );
 
 CREATE TABLE "Comments" (
@@ -102,4 +102,7 @@ SELECT *
 FROM Comments
 WHERE post_id = 2
 
+INSERT INTO `Posts` VALUES (null, 1, 'The Evolution of Jazz', '2024-11-01', 'https://example.com/image1.jpg', 'A deep dive into the history and impact of jazz music.', 'test', true);
+
 INSERT INTO Subscriptions VALUES (null, '3', '2', 'july 2022')
+
