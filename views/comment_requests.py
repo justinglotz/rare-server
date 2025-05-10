@@ -48,3 +48,16 @@ def create_comments(new_comment):
         new_comment['id'] = id
 
     return new_comment
+
+def delete_comments(id):
+    """uses one param through id, deletes a comment 
+    from the dataset through an SQL DELETE FROM query, 
+    returns new instace of comment"""
+    with sqlite3.connect('./db.sqlite3') as conn:
+
+        delete_c_cursor = conn.cursor()
+
+        delete_c_cursor.execute("""
+        DELETE FROM Comments
+        WHERE id = ?
+        """, (id, ))
