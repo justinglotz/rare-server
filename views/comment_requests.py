@@ -29,3 +29,22 @@ def get_comments_by_post(post_id):
                               row["post_id"], row["content"])
             comments.append(comment.__dict__)
     return comments
+
+
+def create_comments(new_comment):
+    """Creates a comment for the dataset through an SQL INSERT query, 
+    returns new instace of comment"""
+
+    with sqlite3.connect ('./db.sqlite3') as conn:
+        create_c_cursor = conn.cursor()
+
+        create_c_cursor.execute("""
+        INSERT INTO Comments (author_id, post_id, content)
+        VALUES (?, ?, ?)
+        """, (new_comment['author_id'],new_comment['post_id'], new_comment['content'], ))
+
+        id = create_c_cursor.lastrowid
+
+        new_comment['id'] = id
+
+    return new_comment

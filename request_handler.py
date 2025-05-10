@@ -3,7 +3,7 @@ import json
 
 from views.user_requests import create_user, login_user, get_all_users, get_single_user, delete_user, update_user
 from views.subscription_requests import get_all_subscriptions, create_subscription
-from views import get_comments_by_post
+from views import get_comments_by_post, create_comments
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -95,6 +95,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             response = create_user(post_body)
         if resource == 'subscriptions':
             response = create_subscription(post_body)
+        if resource == 'comments':
+            response = create_comments(post_body)
 
         self.wfile.write(response.encode())
 
