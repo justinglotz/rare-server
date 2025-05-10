@@ -46,3 +46,22 @@ def create_subscription(subscription):
             'token': id,
             'valid': True
         })
+
+
+def delete_subscription(id):
+    """Deletes a subscription from the database
+
+    Args:
+        id (integer): The integer representing the id of a specific subscription
+
+    Returns:
+        None
+    """
+    with sqlite3.connect('./db.sqlite3') as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM subscriptions
+        WHERE id = ?
+        """, (id, ))

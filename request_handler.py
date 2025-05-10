@@ -6,10 +6,9 @@ from views.user_requests import create_user, login_user, get_all_users, get_sing
 
 from views.post_requests import get_single_post, get_all_posts
 
-from views.subscription_requests import get_all_subscriptions, create_subscription
+from views.subscription_requests import get_all_subscriptions, create_subscription, delete_subscription
 from views import get_comments_by_post, create_comments
 from views.category_requests import get_all_categories
-
 
 class HandleRequests(BaseHTTPRequestHandler):
     """Handles the requests to this server"""
@@ -146,6 +145,8 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "users":
             delete_user(id)
+        if resource == "subscriptions":
+            delete_subscription(id)
         self.wfile.write("".encode())
 
 
