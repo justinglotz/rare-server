@@ -8,7 +8,7 @@ from views.post_requests import get_single_post, get_all_posts
 
 from views.subscription_requests import get_all_subscriptions, create_subscription, delete_subscription
 from views import get_comments_by_post, create_comments
-
+from views.category_requests import get_all_categories
 
 class HandleRequests(BaseHTTPRequestHandler):
     """Handles the requests to this server"""
@@ -72,6 +72,12 @@ class HandleRequests(BaseHTTPRequestHandler):
 
                 else:
                     response = get_all_users()
+
+            if resource == "categories":
+                if id is not None:
+                    response = get_single_category(id)
+                else:
+                    response = get_all_categories()
 
             if resource == "posts":
                 if id is not None:
