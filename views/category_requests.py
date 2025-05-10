@@ -32,3 +32,30 @@ def get_all_categories():
             categories.append(category.__dict__)
 
     return categories
+
+
+def create_category(category):
+    """Adds a category to the database when they register
+
+    Args:
+        category (dictionary): The dictionary passed to the register post request
+
+    Returns:
+        json string: Contains the token of the newly created category
+    """
+    with sqlite3.connect('./db.sqlite3') as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        Insert into Categories (label) values (?)
+        """, (
+            category['label'],
+        ))
+
+        id = db_cursor.lastrowid
+
+        return json.dumps({
+            'token': id,
+            'valid': True
+        })
