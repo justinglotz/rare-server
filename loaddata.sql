@@ -90,7 +90,11 @@ INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
 
 
+<<<<<<< Updated upstream
 INSERT INTO Users ('id', 'first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active') VALUES (2, 'Justin', 'Glotzbach', 'justin@justin.com', 'Here is a bio', 'justinglotz', 'password', 'image_url', 'date', False)
+=======
+INSERT INTO Users ('id', 'first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active') VALUES (2, 'Justin', 'Glotzbach', 'justin@justin.com', 'Here is a bio', 'justinglotz', 'password', 'image_url', '2022', False)
+>>>>>>> Stashed changes
 
 
 INSERT INTO Comments VALUES (null, '1', '1', 'I know I just commented, but this is super siick')
