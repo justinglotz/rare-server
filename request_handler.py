@@ -4,6 +4,7 @@ import json
 from views.user_requests import create_user, login_user, get_all_users, get_single_user, delete_user, update_user
 
 from views import get_comments_by_post
+from views.post_requests import get_single_post, get_all_posts
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -68,9 +69,19 @@ class HandleRequests(BaseHTTPRequestHandler):
 
                 else:
                     response = get_all_users()
+                    
 
+            if resource == "posts":
+                if id is not None:
+                    response = get_single_post(id)
+
+                else:
+                    response = get_all_posts()
         else:
             (resource, key, value) = parsed
+                    
+        
+
 
             if key == 'post_id' and resource == "comments":
                 response = get_comments_by_post(value)
