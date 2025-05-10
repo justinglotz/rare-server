@@ -106,3 +106,6 @@ WHERE post_id = 2
 INSERT INTO `Posts` VALUES (null, 1, 'The Evolution of Jazz', '2024-11-01', 'https://example.com/image1.jpg', 'A deep dive into the history and impact of jazz music.', 'test', true);
 
 INSERT INTO Subscriptions VALUES (null, '3', '2', 'july 2022')
+
+-- Example DELETE query for comments
+DELETE FROM Comments WHERE id = 8
