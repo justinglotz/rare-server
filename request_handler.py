@@ -8,7 +8,7 @@ from views.post_requests import get_single_post, get_all_posts
 
 from views.subscription_requests import get_all_subscriptions, create_subscription, delete_subscription
 from views import get_comments_by_post, create_comments
-from views.category_requests import get_all_categories
+from views.category_requests import get_all_categories, create_category
 
 class HandleRequests(BaseHTTPRequestHandler):
     """Handles the requests to this server"""
@@ -114,6 +114,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             response = create_subscription(post_body)
         if resource == 'comments':
             response = create_comments(post_body)
+        if resource == 'categories':
+            response = create_category(post_body)
 
         self.wfile.write(response.encode())
 
