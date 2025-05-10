@@ -83,6 +83,7 @@ def get_single_user(id):
 
         db_cursor.execute("""
         SELECT 
+            u.id,
             u.first_name,
             u.last_name,
             u.profile_image_url,
@@ -96,7 +97,7 @@ def get_single_user(id):
     row = db_cursor.fetchone()
 
     user = User(
-        first_name=row['first_name'], last_name=row['last_name'], profile_image_url=row[
+        id=row['id'], first_name=row['first_name'], last_name=row['last_name'], profile_image_url=row[
             'profile_image_url'], username=row['username'], created_on=row['created_on'], bio=row['bio']
     )
 

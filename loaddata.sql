@@ -99,3 +99,5 @@ INSERT INTO Comments VALUES (null, '2', '2', 'This Just in, who are you?')
 SELECT *
 FROM Comments
 WHERE post_id = 2
+
+INSERT INTO Subscriptions VALUES (null, '3', '2', 'july 2022')

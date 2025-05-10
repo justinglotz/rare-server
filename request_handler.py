@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
 from views.user_requests import create_user, login_user, get_all_users, get_single_user, delete_user, update_user
-
+from views.subscription_requests import get_all_subscriptions, create_subscription
 from views import get_comments_by_post
 
 
@@ -69,6 +69,9 @@ class HandleRequests(BaseHTTPRequestHandler):
                 else:
                     response = get_all_users()
 
+            if resource == "subscriptions":
+                response = get_all_subscriptions()
+
         else:
             (resource, key, value) = parsed
 
@@ -88,8 +91,10 @@ class HandleRequests(BaseHTTPRequestHandler):
             response = login_user(post_body)
         if resource == 'register':
             response = create_user(post_body)
-        else:
+        if resource == 'users':
             response = create_user(post_body)
+        if resource == 'subscriptions':
+            response = create_subscription(post_body)
 
         self.wfile.write(response.encode())
 
