@@ -32,6 +32,7 @@ class User():
             dictionary: attributes needed for viewing the details of a single user in the frontend
         """
         return {
+            "id": self.id,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "profile_image_url": self.profile_image_url,
