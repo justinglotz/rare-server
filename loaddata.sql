@@ -86,6 +86,7 @@ CREATE TABLE "Categories" (
 );
 
 INSERT INTO Categories ('label') VALUES ('News');
+INSERT INTO Categories ('label') VALUES ('Sports');
 INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
 
@@ -105,4 +106,3 @@ WHERE post_id = 2
 INSERT INTO `Posts` VALUES (null, 1, 'The Evolution of Jazz', '2024-11-01', 'https://example.com/image1.jpg', 'A deep dive into the history and impact of jazz music.', 'test', true);
 
 INSERT INTO Subscriptions VALUES (null, '3', '2', 'july 2022')
-
