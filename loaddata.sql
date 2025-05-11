@@ -86,6 +86,7 @@ CREATE TABLE "Categories" (
 );
 
 INSERT INTO Categories ('label') VALUES ('News');
+INSERT INTO Categories ('label') VALUES ('Sports');
 INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
 
@@ -106,3 +107,5 @@ INSERT INTO `Posts` VALUES (null, 1, 2, 'Sports', '05-11-2025',  'https://exampl
 
 INSERT INTO Subscriptions VALUES (null, '3', '2', 'july 2022')
 
+-- Example DELETE query for comments
+DELETE FROM Comments WHERE id = 8

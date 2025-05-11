@@ -6,9 +6,11 @@ from views.user_requests import create_user, login_user, get_all_users, get_sing
 
 from views.post_requests import get_single_post, get_all_posts, create_post, delete_post, update_post
 
-from views.subscription_requests import get_all_subscriptions, create_subscription
-from views import get_comments_by_post, create_comments 
 
+from views.subscription_requests import get_all_subscriptions, create_subscription, delete_subscription
+from views.category_requests import get_all_categories, create_category, delete_category
+
+from views import get_comments_by_post, create_comments, delete_comments
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -73,8 +75,12 @@ class HandleRequests(BaseHTTPRequestHandler):
 
                 else:
                     response = get_all_users()
-                    
 
+            if resource == "categories":
+                if id is not None:
+                    response = get_single_category(id)
+                else:
+                    response = get_all_categories()
 
             if resource == "posts":
                 if id is not None:
@@ -86,12 +92,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             if resource == "subscriptions":
                 response = get_all_subscriptions()
 
-
         else:
             (resource, key, value) = parsed
-                    
-        
-
 
             if key == 'post_id' and resource == "comments":
                 response = get_comments_by_post(value)
@@ -115,8 +117,13 @@ class HandleRequests(BaseHTTPRequestHandler):
             response = create_subscription(post_body)
         if resource == 'comments':
             response = create_comments(post_body)
+
         if resource == 'posts':
             response = create_post(post_body)
+
+        if resource == 'categories':
+            response = create_category(post_body)
+
 
         self.wfile.write(response.encode())
 
@@ -151,6 +158,12 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "users":
             delete_user(id)
+        if resource == "subscriptions":
+            delete_subscription(id)
+        if resource == "comments":
+            delete_comments(id)
+        if resource == "categories":
+            delete_category(id)
         self.wfile.write("".encode())
         
         if resource == "posts":
