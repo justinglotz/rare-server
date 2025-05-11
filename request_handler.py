@@ -4,10 +4,10 @@ import json
 from views.user_requests import create_user, login_user, get_all_users, get_single_user, delete_user, update_user
 
 
-from views.post_requests import get_single_post, get_all_posts
+from views.post_requests import get_single_post, get_all_posts, create_post, delete_post, update_post
 
 from views.subscription_requests import get_all_subscriptions, create_subscription
-from views import get_comments_by_post, create_comments
+from views import get_comments_by_post, create_comments 
 
 
 
@@ -115,6 +115,8 @@ class HandleRequests(BaseHTTPRequestHandler):
             response = create_subscription(post_body)
         if resource == 'comments':
             response = create_comments(post_body)
+        if resource == 'posts':
+            response = create_post(post_body)
 
         self.wfile.write(response.encode())
 
@@ -130,6 +132,9 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "users":
             success = update_user(id, post_body)
+            
+        if resource == "posts":
+            success = update_post(id, post_body)
 
         if success:
             self._set_headers(204)
@@ -146,6 +151,10 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         if resource == "users":
             delete_user(id)
+        self.wfile.write("".encode())
+        
+        if resource == "posts":
+            delete_post(id)
         self.wfile.write("".encode())
 
 
