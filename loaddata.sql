@@ -109,3 +109,11 @@ INSERT INTO Subscriptions VALUES (null, '3', '2', 'july 2022')
 
 -- Example DELETE query for comments
 DELETE FROM Comments WHERE id = 8
+
+-- Example UPDATE query for comments
+UPDATE Comments 
+SET 
+  post_id = 2, 
+  author_id = 2, 
+  content = 'I have an id of 7!' 
+WHERE id=7

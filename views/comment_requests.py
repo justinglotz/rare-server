@@ -61,3 +61,27 @@ def delete_comments(id):
         DELETE FROM Comments
         WHERE id = ?
         """, (id, ))
+
+def update_comments(id, updated_comment):
+    """uses two param through id and updated_comment payload, updates a comment 
+    from the dataset through an SQL UPDATE SET query, 
+    returns new instace of comment"""
+    with sqlite3.connect('./db.sqlite3') as conn:
+        update_c_cursor = conn.cursor()
+
+        update_c_cursor.execute("""
+        UPDATE Comments
+        SET
+          post_id = ?,
+          author_id = ?,
+          content = ?
+        WHERE id = ?
+        """, (updated_comment['post_id'], updated_comment['author_id'],
+              updated_comment['content'], id, ))
+
+        rows_affected = update_c_cursor.rowcount
+
+        if rows_affected == 0:
+            return False
+        else:
+            return True
