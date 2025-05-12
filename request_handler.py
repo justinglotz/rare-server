@@ -10,7 +10,7 @@ from views.post_requests import get_single_post, get_all_posts, create_post, del
 from views.subscription_requests import get_all_subscriptions, create_subscription, delete_subscription
 from views.category_requests import get_all_categories, create_category, delete_category
 
-from views import get_comments_by_post, create_comments, delete_comments
+from views import get_comments_by_post, create_comments, delete_comments, update_comments
 
 
 class HandleRequests(BaseHTTPRequestHandler):
@@ -142,6 +142,9 @@ class HandleRequests(BaseHTTPRequestHandler):
             
         if resource == "posts":
             success = update_post(id, post_body)
+            
+        if resource == "comments":
+            success = update_comments(id, post_body)
 
         if success:
             self._set_headers(204)
