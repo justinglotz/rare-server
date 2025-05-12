@@ -4,7 +4,7 @@ from models import Posts
 
 def get_all_posts():
     """Fetch all posts from the database."""
-    with sqlite3.connect("./rsdb.sqlite3") as conn:
+    with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
@@ -38,7 +38,7 @@ def get_all_posts():
 
 def get_single_post(id):
     """Fetch a single post from the database by its ID."""
-    with sqlite3.connect("./rsdb.sqlite3") as conn:
+    with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
@@ -69,7 +69,7 @@ def get_single_post(id):
 
 def create_post(new_post):
     """Insert a new post into the database."""
-    with sqlite3.connect("./rsdb.sqlite3") as conn:
+    with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
@@ -88,7 +88,7 @@ def create_post(new_post):
 
 def delete_post(id):
     """Delete a post from the database by its ID."""
-    with sqlite3.connect("./rsdb.sqlite3") as conn:
+    with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
@@ -99,7 +99,7 @@ def delete_post(id):
 
 def update_post(id, updated_post):
     """Update an existing post's details in the database."""
-    with sqlite3.connect("./rsdb.sqlite3") as conn:
+    with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
